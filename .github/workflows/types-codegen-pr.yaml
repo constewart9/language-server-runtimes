@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Allows manual triggering
   pull_request:
     branches:
-      - feature/flareProtocolCodeGen
+      - main
     paths:
       - 'types/codegen/schemas/chatTypes.json'
 
