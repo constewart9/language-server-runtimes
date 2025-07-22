@@ -1373,6 +1373,13 @@
                 "properties": {
                     "tabId": { "type": "string" }
                 }
+            },
+            "tester": {
+                "type": "object",
+                "required": ["tabId"],
+                "properties": {
+                    "tabId": { "type": "string" }
+                }
             }
         }
     }
