@@ -60,6 +60,8 @@ import {
     onPinnedContextRemoveNotificationType,
     openFileDialogRequestType,
     listAvailableModelsRequestType,
+    subscriptionDetailsNotificationType,
+    subscriptionUpgradeNotificationType,
 } from '../protocol'
 import { createConnection } from 'vscode-languageserver/browser'
 import {
@@ -83,11 +85,15 @@ import { observe } from './lsp'
 import { LspRouter } from './lsp/router/lspRouter'
 import { LspServer } from './lsp/router/lspServer'
 import {
+    getIamCredentialRequestType,
     getSsoTokenRequestType,
+    invalidateStsCredentialRequestType,
     invalidateSsoTokenRequestType,
     listProfilesRequestType,
     ssoTokenChangedRequestType,
     updateProfileRequestType,
+    stsCredentialChangedRequestType,
+    getMfaCodeRequestType,
 } from '../protocol/identity-management'
 import { IdentityManagement } from '../server-interface/identity-management'
 import { WebBase64Encoding } from './encoding'
@@ -196,14 +202,22 @@ export const baseRuntime = (connections: { reader: MessageReader; writer: Messag
         onOpenFileDialog: handler => lspConnection.onRequest(openFileDialogRequestType.method, handler),
         onRuleClick: handler => lspConnection.onRequest(ruleClickRequestType.method, handler),
         onListAvailableModels: handler => lspConnection.onRequest(listAvailableModelsRequestType.method, handler),
+        sendSubscriptionDetails: params =>
+            lspConnection.sendNotification(subscriptionDetailsNotificationType.method, params),
+        onSubscriptionUpgrade: handler =>
+            lspConnection.onNotification(subscriptionUpgradeNotificationType.method, handler),
     }
 
     const identityManagement: IdentityManagement = {
         onListProfiles: handler => lspConnection.onRequest(listProfilesRequestType, handler),
         onUpdateProfile: handler => lspConnection.onRequest(updateProfileRequestType, handler),
         onGetSsoToken: handler => lspConnection.onRequest(getSsoTokenRequestType, handler),
+        onGetIamCredential: handler => lspConnection.onRequest(getIamCredentialRequestType, handler),
         onInvalidateSsoToken: handler => lspConnection.onRequest(invalidateSsoTokenRequestType, handler),
+        onInvalidateStsCredential: handler => lspConnection.onRequest(invalidateStsCredentialRequestType, handler),
         sendSsoTokenChanged: params => lspConnection.sendNotification(ssoTokenChangedRequestType, params),
+        sendStsCredentialChanged: params => lspConnection.sendNotification(stsCredentialChangedRequestType, params),
+        sendGetMfaCode: params => lspConnection.sendRequest(getMfaCodeRequestType, params),
     }
 
     // Set up auth without encryption
