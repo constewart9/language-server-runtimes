@@ -1376,9 +1376,9 @@
             },
             "tester": {
                 "type": "object",
-                "required": ["tabId"],
+                "required": ["test"],
                 "properties": {
-                    "tabId": { "type": "string" }
+                    "test": { "type": "string" }
                 }
             }
         }
