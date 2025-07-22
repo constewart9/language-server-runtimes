@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'types/codegen/schemas/chatTypes.json'
+      - 'types/codegen/schema/chatTypes.json'
 
 jobs:
   validate-pr:
