@@ -47,7 +47,8 @@
                     "targetCompatibility": "21"
                 },
                 "global-property": {
-                    "models": "CursorPosition:FileParams:CopyFileParams:OpenFileDiffParams:ShowOpenDialogParams:ShowSaveFileDialogParams:ShowSaveFileDialogResult"
+                    "models": "CursorPosition:FileParams:CopyFileParams:OpenFileDiffParams:ShowOpenDialogParams:ShowSaveFileDialogParams:ShowSaveFileDialogResult",
+                    "supportingFiles": "pom.xml"
                 },
                 "importMappings": {
                     "Position": "org.eclipse.lsp4j.Position",
