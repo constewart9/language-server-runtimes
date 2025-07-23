@@ -11,6 +11,7 @@
         "@openapitools/openapi-generator-cli": "^2.21.0",
         "@types/node": "^24.0.4",
         "ts-node": "^10.9.2",
-        "typescript": "^5.8.3"
+        "typescript": "^5.8.3",
+        "vscode-languageserver-types": "^3.17.5"
     }
 }
