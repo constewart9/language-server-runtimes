@@ -23,7 +23,6 @@ jobs:
           #should we cache: 'npm'
 
       - name: Install dependencies
-        working-directory: types/codegen
         run: npm ci
 
       - name: Generate types
