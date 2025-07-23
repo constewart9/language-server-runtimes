@@ -50,4 +50,7 @@ jobs:
 
       - name: Build Java with Maven
         working-directory: types/codegen/generated/java
-        run: mvn clean compile -Djava.version=21
+        run: |
+          # Install the LSP4J dependency before compiling
+          mvn dependency:get -Dartifact=org.eclipse.lsp4j:org.eclipse.lsp4j:0.22.0
+          mvn clean compile -Djava.version=21
