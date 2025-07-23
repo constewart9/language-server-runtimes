@@ -44,4 +44,4 @@ jobs:
 
       - name: Build Java with Maven
         working-directory: types/codegen/generated/java
-        run: mvn clean compile
+        run: mvn clean compile -Djava.version=21
