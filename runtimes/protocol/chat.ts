@@ -93,7 +93,11 @@ import {
     OpenFileDialogResult,
 } from '@local/language-server-runtimes-generated-types'
 
-import { LIST_AVAILABLE_MODELS_REQUEST_METHOD, ListAvailableModelsResult, ListAvailableModelsParams     SUBSCRIPTION_DETAILS_NOTIFICATION_METHOD,
+import {
+    LIST_AVAILABLE_MODELS_REQUEST_METHOD,
+    ListAvailableModelsResult,
+    ListAvailableModelsParams,
+    SUBSCRIPTION_DETAILS_NOTIFICATION_METHOD,
     SubscriptionDetailsParams,
     SUBSCRIPTION_UPGRADE_NOTIFICATION_METHOD,
     SubscriptionUpgradeParams,
