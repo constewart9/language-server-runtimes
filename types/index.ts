@@ -41,6 +41,11 @@ export {
     //TODO: remove and add to chatTypes.json
     ListAvailableModelsResult,
     ListAvailableModelsParams,
+    SUBSCRIPTION_DETAILS_NOTIFICATION_METHOD,
+    SUBSCRIPTION_UPGRADE_NOTIFICATION_METHOD,
+    SUBSCRIPTION_SHOW_COMMAND_METHOD,
+    SubscriptionDetailsParams,
+    SubscriptionUpgradeParams,
 } from './chat'
 export * from './didChangeDependencyPaths'
 export * from './inlineCompletionWithReferences'
