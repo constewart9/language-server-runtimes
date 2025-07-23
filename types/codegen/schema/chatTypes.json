@@ -1376,9 +1376,9 @@
             },
             "newTest": {
                 "type": "object",
-                "required": ["newer"],
+                "required": ["better"],
                 "properties": {
-                    "newer": { "type": "string" }
+                    "better": { "type": "string" }
                 }
             }
         }
