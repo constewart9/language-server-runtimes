@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.116](https://github.com/constewart9/language-server-runtimes/compare/language-server-runtimes/v0.2.115...language-server-runtimes/v0.2.116) (2025-07-25)
+
+
+### Bug Fixes
+
+* fix again bruh ([a9e58d8](https://github.com/constewart9/language-server-runtimes/commit/a9e58d80651a8ea2b83ce871b0964aa86ee8d843))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @aws/language-server-runtimes-types bumped from ^0.1.50 to ^0.1.51
+
 ## [0.2.115](https://github.com/aws/language-server-runtimes/compare/language-server-runtimes/v0.2.114...language-server-runtimes/v0.2.115) (2025-07-22)
 
 

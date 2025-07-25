@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.51](https://github.com/constewart9/language-server-runtimes/compare/language-server-runtimes-types/v0.1.50...language-server-runtimes-types/v0.1.51) (2025-07-25)
+
+
+### Bug Fixes
+
+* changed dependencies ([ebee2f6](https://github.com/constewart9/language-server-runtimes/commit/ebee2f66faec760e52e789a234d73e1f96181881))
+* changing java version in generated pom ([940e2ca](https://github.com/constewart9/language-server-runtimes/commit/940e2ca891ed8bd218a6ec90ca329f148c56655b))
+* don't generate tests ([fa40d88](https://github.com/constewart9/language-server-runtimes/commit/fa40d88d59519248f9db31b154efbc4713f76a45))
+* fix ([6a3dc81](https://github.com/constewart9/language-server-runtimes/commit/6a3dc819fceae57682c8bf85b37382b23b9b0095))
+* fix again bruh ([a9e58d8](https://github.com/constewart9/language-server-runtimes/commit/a9e58d80651a8ea2b83ce871b0964aa86ee8d843))
+* fixing ([ba74ced](https://github.com/constewart9/language-server-runtimes/commit/ba74ced6ccc5636a1618875168bfc4573f1103da))
+* testing gh again ([4dd29ca](https://github.com/constewart9/language-server-runtimes/commit/4dd29ca4db7128da45e02cff03539ea4dee95069))
+
 ## [0.1.50](https://github.com/aws/language-server-runtimes/compare/language-server-runtimes-types/v0.1.49...language-server-runtimes-types/v0.1.50) (2025-07-22)
 
 
