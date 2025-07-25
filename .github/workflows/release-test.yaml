@@ -50,8 +50,14 @@ jobs:
       - name: Package generated files
         run: |
           cd types/codegen/generated
-          zip -r typescript-generated.zip typescript/
-          cp java/target/*.jar ./java-generated.jar
+          mkdir -p typescript-package
+          cp -r typescript/src typescript-package/
+          cp -r typescript/dist typescript-package/
+          cp typescript/package.json typescript-package/
+          cp typescript/README.md typescript-package/
+          cp typescript/tsconfig.json typescript-package/
+          zip -r typescript-generated.zip typescript-package/
+          cp java/target/openapi-java-client-0.0.1.jar ./java-generated.jar
       
       - name: Create Draft Release
         uses: actions/create-release@v1
