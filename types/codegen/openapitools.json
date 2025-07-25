@@ -48,7 +48,10 @@
                 },
                 "global-property": {
                     "models": "CursorPosition:FileParams:CopyFileParams:OpenFileDiffParams:ShowOpenDialogParams:ShowSaveFileDialogParams:ShowSaveFileDialogResult",
-                    "supportingFiles": "pom.xml"
+                    "supportingFiles": "pom.xml",
+                    "modelTests": false,
+                    "modelDocs": false,
+                    "apiTests": false
                 },
                 "importMappings": {
                     "Position": "org.eclipse.lsp4j.Position",
