@@ -1,0 +1,13 @@
+{
+  "name": "quicktype-example",
+  "version": "1.0.0",
+  "description": "Example of using quicktype to generate TypeScript from JSON",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js",
+    "clean": "node clean.js"
+  },
+  "dependencies": {
+    "quicktype-core": "^23.2.6"
+  }
+}
