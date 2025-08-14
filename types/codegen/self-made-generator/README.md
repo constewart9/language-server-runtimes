@@ -10,9 +10,34 @@ Q supported the PoC for "self-made" generators in each of the four languages. In
 - Difficult to maintain and extend in the future
 - Would be rigid and could only handle clean/expected inputs
 
+## Custom TypeScript Format
+
+Instead of JSON, this approach uses a structured TypeScript format with explicit type definitions:
+
+- **`isRequired`** - Boolean flag for optional vs required fields
+- **`parentType`** - String to model inheritance relationships
+- **`PropertyType`** - Structured type system supporting primitives, references, arrays, and maps
+- **`TypeDefinition`** - Complete type structure with properties, descriptions, and metadata
+
+Example definition:
+```typescript
+{
+  name: 'ChatPrompt',
+  properties: [
+    {
+      name: 'prompt',
+      type: createPrimitiveType('string'),
+      isRequired: false
+    }
+  ]
+}
+```
+
+This structured representation is similar to how OpenAPI Generator uses an intermediate data type from JSON and YAML inputs before generating code.
+
 ## Input/Output
 - **Generators**: `csharp-generator.ts`, `java-generator.ts`, `kotlin-generator.ts`, `typescript-generator.ts`
-- **Input**: `chat-interfaces.ts`
+- **Input**: `chat-interfaces.ts` (TypeScript intermediate format)
 - **Output**: `types.ts`, `Types.kt`, `Types.cs`, `ChatParams.java`
 
 ## Features
