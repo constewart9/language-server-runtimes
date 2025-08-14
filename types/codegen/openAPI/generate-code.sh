@@ -37,14 +37,7 @@ openapi-generator-cli generate \
     -o generated/java \
     --skip-validate-spec
 
-# # Generate Java code with records
-# echo "Generating Java code with records..."
-# openapi-generator-cli generate \
-#     -i api-spec.yaml \
-#     -g java \
-#     -o generated/java-records \
-#     -t templates/java \
-#     --skip-validate-spec
+
 
 echo "Generating Java code with Jackson..."
 openapi-generator-cli generate \
