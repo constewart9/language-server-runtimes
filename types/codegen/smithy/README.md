@@ -1,6 +1,16 @@
-# Smithy Chat API Generator
+# Smithy Code Generator
 
-Generates TypeScript interfaces from Smithy models for a chat API service.
+Smithy is a language and protocol agnostic IDL with tooling for code generation created by AWS.
+
+## Benefits
+- The IDL file is clean and readable and closer to TypeScript than JSON
+
+## Limitations
+- No generator for C#. (There is tooling that supports Smithy code converted into c2j (coral 2 json) format. But at that point, a JSON based code generator like OpenAPI or Quicktype would need to be used anyway)
+
+## Input/Output
+- **Input**: `main.smithy`
+- **Output**: `models_0.ts`
 
 ## Requirements
 

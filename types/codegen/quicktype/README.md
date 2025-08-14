@@ -1,6 +1,19 @@
-# Quicktype Multi-Language Code Generator
+# Quicktype Code Generator
 
-Generates type-safe code in multiple languages from JSON Schema definitions using quicktype.
+Quicktype is a code generation tool that generates strongly-typed models and serializers from JSON, JSON Schemas, and TypeScript (experimental).
+
+## Benefits
+- Support for 15+ languages including all required languages
+- Out-of-the-box fit is closest to the current definitions across the four languages
+- Built-in customization options to tailor the code even further
+
+## Limitations
+- Very little documentation
+- As a result, development, maintenance, and extension to other languages would be difficult
+
+## Input/Output
+- **Input**: `sample-schema.json`
+- **Output**: `chat-types.ts`, `ChatTypes.cs`, `ChatTypes.java`, `ChatTypes.kt`
 
 ## Supported Languages
 

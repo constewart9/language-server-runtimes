@@ -1,6 +1,16 @@
-# OpenAPI Code Generation Proof of Concept
+# OpenAPI Code Generator
 
-This project explores different approaches to generating client code from OpenAPI specifications. Multiple generation scripts test various configurations, templates, and output styles.
+The IDL file will be a JSON Schema that follows the OpenAPI Specification v3.0. This will enable us to use OpenAPI Generator for code generation in all required languages. OpenAPI Generator allows generation of API client libraries, documentation, and configuration automatically from OpenAPI Specifications. While the OpenAPI Specification is set by the OpenAPI Initiative, OpenAPI Generator is a separate, community-driven project.
+
+## Benefits
+- Mature, well-maintained tool with extensive customization options
+- Has an active community, a core team, and a technical committee
+- Comprehensive documentation, examples, and proven use cases
+- Supports code generation in 40+ languages, including all desired languages
+
+## Limitations
+- Additional requirements to meet OpenAPI specification
+- Code generation "out of the box" is less of a match with existing code
 
 ## Proof of Concept Findings
 

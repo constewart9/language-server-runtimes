@@ -1,6 +1,19 @@
-# Multi-Language Code Generator
+# Self-Made Code Generator
 
-Generate code for multiple programming languages from a TypeScript-based intermediate representation.
+Q supported the PoC for "self-made" generators in each of the four languages. Instead of JSON, they operated on a custom TypeScript format that included fields such as isRequired for nonoptional fields and parentType to model inheritance. This is similar to how OpenAPI Generator uses an intermediate data type from JSON and YAML inputs before generating code.
+
+## Benefits
+- Code is very customizable with full control over type mappings and output format
+- Closest out-of-the-box fit to the current definitions
+
+## Limitations
+- Difficult to maintain and extend in the future
+- Would be rigid and could only handle clean/expected inputs
+
+## Input/Output
+- **Generators**: `csharp-generator.ts`, `java-generator.ts`, `kotlin-generator.ts`, `typescript-generator.ts`
+- **Input**: `chat-interfaces.ts`
+- **Output**: `types.ts`, `Types.kt`, `Types.cs`, `ChatParams.java`
 
 ## Features
 
