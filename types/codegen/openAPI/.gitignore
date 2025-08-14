@@ -1,0 +1,28 @@
+# Generated output
+generated/
+
+# Dependencies
+node_modules/
+
+# Build artifacts
+.gradle/
+build/
+target/
+*.jar
+*.class
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

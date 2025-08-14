@@ -1,0 +1,119 @@
+#
+# DO NOT EDIT BETWEEN THESE LINES
+# Structure required for OpenAPI - modifications will break compatibility
+#
+openapi: 3.0.0
+info:
+  title: Basic Structures
+  version: 1.0.0
+paths:
+  /chat:
+    post:
+      summary: Execute JSON-RPC request
+      operationId: jsonRpcCall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Successful operation
+
+components:
+  schemas:
+  
+    JsonRpcRequest:
+      type: "object"
+      properties:
+        jsonrpc:
+          type: "string"
+          enum: ["2.0"]
+        method:
+          type: "string"
+        params:
+          oneOf:
+            - type: "object"
+            - type: "array"
+              items: {}
+        id:
+          oneOf:
+            - type: "string"
+            - type: "number"
+            - type: "null"
+      required:
+        - jsonrpc
+        - method
+  
+  #
+  # EDIT BELOW THIS LINE
+  # Add your custom schemas and modify existing ones as needed
+  #
+  
+    PartialResultParams:
+      type: "object"
+      properties:
+        partialResultToken:
+          oneOf:
+            - type: "number"
+            - type: "string"
+    
+    ChatPrompt:
+      type: "object"
+      properties:
+        prompt:
+          type: "string"
+        escapedPrompt:
+          type: "string"
+        command:
+          type: "string"
+    
+    CursorState:
+      type: "object"
+      properties:
+        command:
+          type: "string"
+    
+    TextDocumentIdentifier:
+      type: "object"
+      properties:
+        command:
+          oneOf:
+          - type: "string"
+          - type: "number"
+          - type: "array"
+            items:
+              type: string
+          - type: "array"
+            items:
+              type: "number"
+    
+    QuickActionCommand:
+      type: "object"
+      properties:
+        command:
+          type: "string"
+    
+    ChatParams:
+      type: "object"
+      allOf:
+        - $ref: '#/components/schemas/PartialResultParams'
+      properties:
+        tabId:
+          type: "string"
+        prompt:
+          $ref: '#/components/schemas/ChatPrompt'
+        cursorState:
+          type: "array"
+          items:
+            $ref: '#/components/schemas/CursorState'
+        textDocument:
+          $ref: '#/components/schemas/TextDocumentIdentifier'
+        context:
+          type: "array"
+          items:
+            $ref: '#/components/schemas/QuickActionCommand'
+          description: Context of the current chat message to be handled by the servers. Context can be added through QuickActionCommand triggered by `@`.
+      required:
+        - tabId
+        - prompt
