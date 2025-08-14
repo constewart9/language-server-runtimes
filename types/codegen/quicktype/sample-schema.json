@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "PartialResultParams": {
+      "type": "object",
+      "properties": {
+        "partialResultToken": {
+          "type": ["number", "string"]
+        }
+      }
+    },
+    "ChatPrompt": {
+      "type": "object",
+      "properties": {
+        "prompt": {
+          "type": "string"
+        },
+        "escapedPrompt": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        }
+      }
+    },
+    "CursorState": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string"
+        }
+      }
+    },
+    "TextDocumentIdentifier": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string"
+        }
+      }
+    },
+    "QuickActionCommand": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "title": "ChatParams",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/definitions/PartialResultParams"
+    }
+  ],
+  "properties": {
+    "tabId": {
+      "type": "string"
+    },
+    "prompt": {
+      "$ref": "#/definitions/ChatPrompt"
+    },
+    "cursorState": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CursorState"
+      }
+    },
+    "textDocument": {
+      "$ref": "#/definitions/TextDocumentIdentifier"
+    },
+    "context": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/QuickActionCommand"
+      },
+      "description": "Context of the current chat message to be handled by the servers. Context can be added through QuickActionCommand triggered by `@`."
+    }
+  },
+  "required": ["tabId", "prompt"]
+}

@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "projections": {
+    "typescript": {
+      "plugins": {
+        "typescript-codegen": {
+          "service": "chat.api#ChatService",
+          "targetNamespace": "chat.api",
+          "package": "@example/chat-api",
+          "packageVersion": "0.1.0"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,681 @@
+openapi: 3.0.0
+info:
+  title: Chat API
+  version: 1.0.0
+paths:
+  /aws/chat/sendChatPrompt:
+    post:
+      operationId: sendChatPrompt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatParams'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResult'
+  
+  /aws/chat/endChat:
+    post:
+      operationId: endChat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndChatParams'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: boolean
+  
+  /aws/chat/sendChatQuickAction:
+    post:
+      operationId: sendChatQuickAction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuickActionParams'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuickActionResult'
+  
+  /aws/chat/sendInlineChatPrompt:
+    post:
+      operationId: sendInlineChatPrompt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InlineChatParams'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InlineChatResult'
+  
+  /aws/chat/buttonClick:
+    post:
+      operationId: buttonClick
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ButtonClickParams'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ButtonClickResult'
+  
+  /aws/chat/listConversations:
+    post:
+      operationId: listConversations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListConversationsParams'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListConversationsResult'
+  
+  /aws/chat/listMcpServers:
+    post:
+      operationId: listMcpServers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListMcpServersParams'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMcpServersResult'
+  
+  /aws/chat/getSerializedChat:
+    post:
+      operationId: getSerializedChat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetSerializedChatParams'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSerializedChatResult'
+
+components:
+  schemas:
+    Position:
+      type: object
+      properties:
+        line:
+          type: number
+        character:
+          type: number
+    
+    Range:
+      type: object
+      properties:
+        start:
+          $ref: '#/components/schemas/Position'
+        end:
+          $ref: '#/components/schemas/Position'
+    
+    TextDocumentIdentifier:
+      type: object
+      properties:
+        uri:
+          type: string
+    
+    Status:
+      type: string
+      enum: [info, success, warning, error]
+    
+    IconType:
+      type: string
+      enum: [file, folder, code-block, list-add, magic, help, trash, search, calendar]
+    
+    ChatItemAction:
+      type: object
+      properties:
+        pillText:
+          type: string
+        prompt:
+          type: string
+        disabled:
+          type: boolean
+        description:
+          type: string
+        type:
+          type: string
+    
+    SourceLink:
+      type: object
+      properties:
+        title:
+          type: string
+        url:
+          type: string
+        body:
+          type: string
+    
+    ReferenceTrackerInformation:
+      type: object
+      properties:
+        licenseName:
+          type: string
+        repository:
+          type: string
+        url:
+          type: string
+        recommendationContentSpan:
+          type: object
+          properties:
+            start:
+              type: number
+            end:
+              type: number
+        information:
+          type: string
+    
+    ChatPrompt:
+      type: object
+      properties:
+        prompt:
+          type: string
+        escapedPrompt:
+          type: string
+        command:
+          type: string
+    
+    CursorState:
+      oneOf:
+        - type: object
+          properties:
+            position:
+              $ref: '#/components/schemas/Position'
+        - type: object
+          properties:
+            range:
+              $ref: '#/components/schemas/Range'
+    
+    PartialResultParams:
+      type: object
+      properties:
+        partialResultToken:
+          oneOf:
+            - type: number
+            - type: string
+    
+    QuickActionCommand:
+      type: object
+      properties:
+        command:
+          type: string
+        description:
+          type: string
+        placeholder:
+          type: string
+        icon:
+          $ref: '#/components/schemas/IconType'
+    
+    ChatParams:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/PartialResultParams'
+      properties:
+        tabId:
+          type: string
+        prompt:
+          $ref: '#/components/schemas/ChatPrompt'
+        cursorState:
+          type: array
+          items:
+            $ref: '#/components/schemas/CursorState'
+        textDocument:
+          $ref: '#/components/schemas/TextDocumentIdentifier'
+        context:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuickActionCommand'
+          description: Context of the current chat message to be handled by the servers. Context can be added through QuickActionCommand triggered by `@`.
+      required:
+        - tabId
+        - prompt
+    
+    InlineChatParams:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/PartialResultParams'
+      properties:
+        prompt:
+          $ref: '#/components/schemas/ChatPrompt'
+        cursorState:
+          type: array
+          items:
+            $ref: '#/components/schemas/CursorState'
+        textDocument:
+          $ref: '#/components/schemas/TextDocumentIdentifier'
+      required:
+        - prompt
+    
+    FileDetails:
+      type: object
+      properties:
+        description:
+          type: string
+        fullPath:
+          type: string
+        lineRanges:
+          type: array
+          items:
+            type: object
+            properties:
+              first:
+                type: number
+              second:
+                type: number
+        changes:
+          type: object
+          properties:
+            added:
+              type: number
+            deleted:
+              type: number
+            total:
+              type: number
+    
+    FileList:
+      type: object
+      properties:
+        rootFolderTitle:
+          type: string
+        filePaths:
+          type: array
+          items:
+            type: string
+        deletedFiles:
+          type: array
+          items:
+            type: string
+        details:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/FileDetails'
+    
+    Button:
+      type: object
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        description:
+          type: string
+        icon:
+          $ref: '#/components/schemas/IconType'
+        disabled:
+          type: boolean
+        keepCardAfterClick:
+          type: boolean
+        status:
+          oneOf:
+            - type: string
+              enum: [main, primary, clear]
+            - $ref: '#/components/schemas/Status'
+    
+    ChatMessage:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [answer, prompt, system-prompt, directive, tool]
+          default: answer
+        header:
+          type: object
+          properties:
+            icon:
+              $ref: '#/components/schemas/IconType'
+            status:
+              type: object
+              properties:
+                status:
+                  $ref: '#/components/schemas/Status'
+                icon:
+                  $ref: '#/components/schemas/IconType'
+                text:
+                  type: string
+        buttons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Button'
+        body:
+          type: string
+        messageId:
+          type: string
+        canBeVoted:
+          type: boolean
+        relatedContent:
+          type: object
+          properties:
+            title:
+              type: string
+            content:
+              type: array
+              items:
+                $ref: '#/components/schemas/SourceLink'
+        summary:
+          type: object
+          properties:
+            content:
+              $ref: '#/components/schemas/ChatMessage'
+            collapsedContent:
+              type: array
+              items:
+                $ref: '#/components/schemas/ChatMessage'
+        followUp:
+          type: object
+          properties:
+            text:
+              type: string
+            options:
+              type: array
+              items:
+                $ref: '#/components/schemas/ChatItemAction'
+        codeReference:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceTrackerInformation'
+        fileList:
+          $ref: '#/components/schemas/FileList'
+        contextList:
+          $ref: '#/components/schemas/FileList'
+    
+    ChatResult:
+      allOf:
+        - $ref: '#/components/schemas/ChatMessage'
+        - type: object
+          properties:
+            additionalMessages:
+              type: array
+              items:
+                $ref: '#/components/schemas/ChatMessage'
+    
+    InlineChatResult:
+      allOf:
+        - $ref: '#/components/schemas/ChatMessage'
+        - type: object
+          properties:
+            requestId:
+              type: string
+    
+    EndChatParams:
+      type: object
+      properties:
+        tabId:
+          type: string
+      required:
+        - tabId
+    
+    QuickActionParams:
+      allOf:
+        - $ref: '#/components/schemas/PartialResultParams'
+      type: object
+      properties:
+        tabId:
+          type: string
+        quickAction:
+          type: string
+        prompt:
+          type: string
+        cursorState:
+          type: array
+          items:
+            $ref: '#/components/schemas/CursorState'
+        textDocument:
+          $ref: '#/components/schemas/TextDocumentIdentifier'
+      required:
+        - tabId
+        - quickAction
+    
+    QuickActionResult:
+      $ref: '#/components/schemas/ChatMessage'
+    
+    ButtonClickParams:
+      type: object
+      properties:
+        tabId:
+          type: string
+        messageId:
+          type: string
+        buttonId:
+          type: string
+      required:
+        - tabId
+        - messageId
+        - buttonId
+    
+    ButtonClickResult:
+      type: object
+      properties:
+        success:
+          type: boolean
+        failureReason:
+          type: string
+      required:
+        - success
+    
+    FilterOption:
+      type: object
+      properties:
+        id:
+          type: string
+        placeholder:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        icon:
+          $ref: '#/components/schemas/IconType'
+        type:
+          type: string
+          enum: [textarea, textinput, numericinput, select, radiogroup]
+        options:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              label:
+                type: string
+      required:
+        - id
+        - type
+    
+    Action:
+      type: object
+      properties:
+        id:
+          type: string
+        icon:
+          $ref: '#/components/schemas/IconType'
+        text:
+          type: string
+      required:
+        - id
+        - text
+    
+    ConversationItem:
+      type: object
+      properties:
+        id:
+          type: string
+        icon:
+          $ref: '#/components/schemas/IconType'
+        description:
+          type: string
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+      required:
+        - id
+    
+    ConversationItemGroup:
+      type: object
+      properties:
+        groupName:
+          type: string
+        icon:
+          $ref: '#/components/schemas/IconType'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationItem'
+    
+    ListConversationsParams:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties:
+            type: string
+    
+    ListConversationsResult:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            title:
+              type: string
+        filterOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterOption'
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationItemGroup'
+      required:
+        - list
+    
+    ListMcpServersParams:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties:
+            type: string
+    
+    DetailedListItem:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        groupActions:
+          type: boolean
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetailedListGroup'
+      required:
+        - title
+    
+    DetailedListGroup:
+      type: object
+      properties:
+        groupName:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetailedListItem'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+        icon:
+          $ref: '#/components/schemas/IconType'
+    
+    ListMcpServersResult:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            status:
+              type: object
+              properties:
+                icon:
+                  $ref: '#/components/schemas/IconType'
+                title:
+                  type: string
+                status:
+                  $ref: '#/components/schemas/Status'
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/DetailedListGroup'
+        filterOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterOption'
+      required:
+        - list
+    
+    GetSerializedChatParams:
+      type: object
+      properties:
+        tabId:
+          type: string
+        format:
+          type: string
+          enum: [html, markdown]
+      required:
+        - tabId
+        - format
+    
+    GetSerializedChatResult:
+      type: object
+      properties:
+        content:
+          type: string
+      required:
+        - content

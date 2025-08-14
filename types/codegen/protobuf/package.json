@@ -1,0 +1,12 @@
+{
+  "name": "proto-generator",
+  "version": "1.0.0",
+  "devDependencies": {
+    "ts-proto": "^2.7.5",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "generate": "./generate.sh",
+    "install-protoc": "./install-protoc.sh"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "openapi-code-generator",
+  "version": "1.0.0",
+  "description": "Generate code from OpenAPI specification",
+  "main": "generate-code.js",
+  "scripts": {
+    "generate": "node generate-code.js",
+    "clean": "node clean.js"
+  },
+  "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.20.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
