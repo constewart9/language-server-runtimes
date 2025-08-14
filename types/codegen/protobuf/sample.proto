@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package sample;
+
+option java_package = "com.example.sample";
+option java_outer_classname = "ChatProtos";
+option csharp_namespace = "Sample";
+
+message ChatPrompt {
+  optional string prompt = 1;
+  optional string escaped_prompt = 2;
+  optional string command = 3;
+}
