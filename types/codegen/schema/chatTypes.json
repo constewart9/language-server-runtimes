@@ -1131,6 +1131,9 @@
                     },
                     "content": {
                         "type": "Uint8Array"
+                    },
+                    "TEST": {
+                        "type": "string"
                     }
                 }
             }
