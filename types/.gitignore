@@ -1,6 +1,5 @@
 LICENSE
 NOTICE
 SECURITY.md
-codegen/scripts/**/*
-codegen/generated/**/*
+codegen/scripts/*
 codegen/tests/fixtures/**/*

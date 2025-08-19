@@ -41,6 +41,8 @@ export {
     LIST_AVAILABLE_MODELS_REQUEST_METHOD,
     SUBSCRIPTION_DETAILS_NOTIFICATION_METHOD,
     SUBSCRIPTION_UPGRADE_NOTIFICATION_METHOD,
+    EXECUTE_SHELL_COMMAND_SHORTCUT_METHOD,
+    ExecuteShellCommandParams,
 } from './chat'
 export * from './didChangeDependencyPaths'
 export * from './inlineCompletionWithReferences'
@@ -68,3 +70,4 @@ export {
     OpenWorkspaceFileParams,
     OpenWorkspaceFileResult,
 } from './workspace'
+export * from './codegen/generated/typescript/src/index'
