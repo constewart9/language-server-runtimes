@@ -1131,11 +1131,13 @@
                     },
                     "content": {
                         "type": "Uint8Array"
+                    },
+                    "disabledText": {
+                        "type": "string"
                     }
                 }
             }
-        ],
-        "required": []
+        ]
     },
     "ContextCommandParams": {
         "type": "object",
